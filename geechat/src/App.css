@@ -1,0 +1,52 @@
+.authPage {
+    width: 50%;
+    height: 90vh;
+    background-color: cadetblue;
+    margin-left: 25%;
+    /* gap: 3000px; */
+}
+h1{
+    color: beige;
+    text-align: center;
+    margin-top: 35px;
+    padding-top: 50px;
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    gap: 25px;
+    padding-left: 120px;
+    margin-top: 80px;
+}
+
+input{
+    height: 40px;
+    width: 400px;
+    padding-left: 20px;
+    border: 0px;
+    border-radius: 5px;
+}
+
+/* input :-ms-input-placeholder {
+    font-size: 20px !important;
+} */
+
+.name, .email {
+    font-size: 20px;
+    color: beige;
+}
+.submitBTN {
+    height: 50px;
+    width: 200px;
+    background-color: rgba(68, 0, 255, 0.322);
+    font-size: 20px;
+    border-radius: 5px;
+    border: 0px;
+    color: beige;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 22%;
+    margin-top: 40px;
+}
