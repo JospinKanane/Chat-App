@@ -1,9 +1,15 @@
-.authPage {
+/* Login qnd signup pages' css */
+.signPage {
     width: 50%;
     height: 90vh;
     background-color: cadetblue;
     margin-left: 25%;
-    /* gap: 3000px; */
+}
+.loginPage {
+    width: 50%;
+    height: 90vh;
+    background-color: cadetblue;
+    margin-left: 25%;
 }
 h1{
     color: beige;
@@ -11,8 +17,7 @@ h1{
     margin-top: 35px;
     padding-top: 50px;
 }
-
-.authForm {
+.loginForm {
     display: flex;
     flex-direction: column;
     width: 500px;
@@ -20,7 +25,14 @@ h1{
     padding-left: 120px;
     margin-top: 80px;
 }
-
+.signForm {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    gap: 25px;
+    padding-left: 120px;
+    margin-top: 35px;
+}
 input{
     height: 40px;
     width: 400px;
@@ -28,16 +40,11 @@ input{
     border: 0px;
     border-radius: 5px;
 }
-
-/* input :-ms-input-placeholder {
-    font-size: 20px !important;
-} */
-
-.name, .email {
+.name, .email, .password {
     font-size: 20px;
     color: beige;
 }
-.submitBTN {
+.loginBTN {
     height: 50px;
     width: 200px;
     background-color: rgba(68, 0, 255, 0.322);
@@ -50,3 +57,17 @@ input{
     margin-left: 22%;
     margin-top: 40px;
 }
+.signBTN {
+    height: 50px;
+    width: 200px;
+    background-color: rgba(68, 0, 255, 0.322);
+    font-size: 20px;
+    border-radius: 5px;
+    border: 0px;
+    color: beige;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 22%;
+    margin-top: 20px;
+}
+/* Login qnd signup pages' css */
