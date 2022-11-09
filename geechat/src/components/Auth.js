@@ -19,6 +19,18 @@ function Auth() {
     console.log(data)
   }
 
+  async function loginUser(e){
+    e.preventDefault();
+    const response = await fetch('http://localhost:9876/login', {
+      method : 'POST',
+      headers : { 'Content-type': 'application/json' },
+      body : JSON.stringify({email, password})
+    })
+
+    const data = await response.json();
+    console.log(data)
+  }
+
   return (
     <div>
         <Register
@@ -35,6 +47,7 @@ function Auth() {
         password={password}
         setEmail={setEmail}
         setPassword={setPassword} 
+        loginUser={loginUser}
         />
     </div>
   )
