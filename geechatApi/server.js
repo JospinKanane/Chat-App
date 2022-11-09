@@ -20,6 +20,8 @@ mongoose.connect( process.env.MONGODB_URI,
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
+app.use(express.json());
+
 app.use(cors());
 app.use(express.urlencoded({extended : false}))
 app.get('/', (req, res) => {

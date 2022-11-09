@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Auth({email, password, setEmail, setPassword}) {
+function Auth({email, password, setEmail, setPassword, loginUser}) {
 
   const handleMailChange = (e) => {
     setEmail(email =  e.target.value)
@@ -16,8 +16,8 @@ function Auth({email, password, setEmail, setPassword}) {
         <h1>Login to chatApp</h1>
         <form 
         className='loginForm' 
-        method='POST' 
-        action='/login'>
+        onSubmit={loginUser}
+        >
            <label 
            className='email' 
            for='loginEmail'>

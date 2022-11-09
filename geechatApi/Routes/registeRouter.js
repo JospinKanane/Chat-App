@@ -1,23 +1,22 @@
 const router = require('express').Router();
+const User = require('../modeles/user');
 const bcrypt = require('bcryptjs');
-const user = require('../server')
 
-router.post('/', async (req, res, next) => {
-    try {
+router.post('/', async(req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10) 
-        user.create({
-            id : req.params.id,
-            name : req.body.name,
-            email : req.body.email,
-            password : hashedPassword,
-
+        const user = new User({
+            'userName' : req.body.name,
+            'userMail' : req.body.email,
+            'userPassword' : hashedPassword,
         })
-        res.redirect('/login')
-    } catch (error) {
-        res.redirect('/register')
-    }
-    console.log(user)
-    
+        user.save()
+        .then((data) => {
+            res.json({'status': 'success'})
+        })
+        .catch((error)=>{
+            console.log(error);
+            res.json({'status': 'error', 'message': "Ereur d'authentification"})
+        })
 })
 
 module.exports = router;
