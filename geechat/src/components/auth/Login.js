@@ -27,6 +27,7 @@ function Auth({email, password, setEmail, setPassword}) {
            type='email' 
            id='loginEmail' 
            className="inputEmail" 
+           name='email'
            placeholder='Enter a your email here'
            onChange={handleMailChange}
            />
@@ -39,6 +40,7 @@ function Auth({email, password, setEmail, setPassword}) {
            type='password' 
            id='loginPassword' 
            className="inputPassword" 
+           name='password'
            placeholder='Enter your password here'
            onChange={handlePWChange}
            />

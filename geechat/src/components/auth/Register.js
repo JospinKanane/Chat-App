@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Register({name, email, password, setName, setPassword, setEmail}) {
+function Register({name, email, password, setName, setPassword, setEmail, registerUser}) {
 
   // const errName = document.querySelector('.errName')
 
@@ -15,19 +15,13 @@ function Register({name, email, password, setName, setPassword, setEmail}) {
     setPassword(password =  e.target.value);
   };
 
-  // const registration = (e) => {
-  //   e.preventDefault();
-  //   errName.innerContent = "Veillez enter un nom valable !"
-  // }
-
 
   return (
     <div className='signPage'>
         <h1>SignUp to chatApp</h1>
         <form 
         className='signForm' 
-        method='POST' 
-        action='/signin'
+        onSubmit={registerUser}
         >
            <label 
            className='name' 
@@ -38,6 +32,7 @@ function Register({name, email, password, setName, setPassword, setEmail}) {
            type='text' 
            id='signName' 
            className="inputName" 
+           name='name'
            placeholder='Enter a your name or your username here'
            onChange={handleNameChange}
            />
@@ -50,7 +45,11 @@ function Register({name, email, password, setName, setPassword, setEmail}) {
            for='signEmail'>
            Email
            </label>
-           <input type='text' id='signEmail' className="inputName" placeholder='Enter a your email here'
+           <input type='text' 
+           id='signEmail' 
+           className="inputName" 
+           name='email'
+           placeholder='Enter a your email here'
            onChange={handleMailChange}
            />
            {/* <span 
@@ -66,6 +65,7 @@ function Register({name, email, password, setName, setPassword, setEmail}) {
            type='password' 
            id='signPassword' 
            className="inputPassword" 
+           name='password' 
            placeholder='Enter your password here'
            onChange={handlePWChange}
            />
