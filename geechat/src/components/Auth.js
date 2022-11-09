@@ -7,6 +7,18 @@ function Auth() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  async function registerUser(e){
+    e.preventDefault();
+    const response = await fetch('http://localhost:9876/register', {
+      method : 'POST',
+      headers : { 'Content-type': 'application/json' },
+      body : JSON.stringify({name, email, password})
+    })
+
+    const data = await response.json();
+    console.log(data)
+  }
+
   return (
     <div>
         <Register
@@ -16,6 +28,7 @@ function Auth() {
         setName={setName}
         setEmail={setEmail}
         setPassword={setPassword}
+        registerUser={registerUser}
         />
         <Login
         email={email}
