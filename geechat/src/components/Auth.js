@@ -9,7 +9,8 @@ function Auth() {
 
   async function registerUser(e){
     e.preventDefault();
-    const response = await fetch('http://localhost:9876/register', {
+    const response = await fetch(`http://localhost:9876/register`,
+    {
       method : 'POST',
       headers : { 'Content-type': 'application/json' },
       body : JSON.stringify({name, email, password})
@@ -21,7 +22,8 @@ function Auth() {
 
   async function loginUser(e){
     e.preventDefault();
-    const response = await fetch('http://localhost:9876/login', {
+    const response = await fetch(`http://localhost:9876/login`,
+    {
       method : 'POST',
       headers : { 'Content-type': 'application/json' },
       body : JSON.stringify({email, password})
