@@ -2,19 +2,26 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const User = require('../modeles/user');
 
-router.post('/', async (req, res) => {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        const user = User.findOne({
-            'userMail' : req.body.email,
-            'userPassword' : hashedPassword,
-        });
+router.post('/', (req, res) => {
+    User.findOne({ userMail : req.body.email})
+        .then(user => {
+            if (!user) {
+                return res.status(401).json({ message: 'Paire login/mot de passe incorrecte'});
+            }
+            bcrypt.compare(req.body.password, user.userPassword)
+            .then(valid => {
+                if (!valid) {
+                    return res.status(401).json({ message: 'Paire login/mot de passe incorrecte' });
+                }
+                res.status(200).json({
+                    userId: user._id,
+                    token: 'TOKEN'
+                });
+            })
+            .catch(error => res.status(500).json({ error, message: "erreur de connexion"}));
 
-        if(user){
-            return res.json({'status': 'ok', user : true}); 
-        } else {
-            console.log(err);
-            return res.status(404).json({'status': 'not found', user :false});
-        };
+    })
+    .catch(error => res.status(500).json({ error, message : "erreur serveur"}));
 })
 
 module.exports = router;
