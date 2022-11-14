@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Login from './auth/Login';
 import Register from './auth/Register';
+import { Route, Switch} from 'wouter'
 
 function Auth() {
   const [name, setName] = useState('')
@@ -34,23 +35,33 @@ function Auth() {
   }
 
   return (
-    <div>
-        <Register
-        name={name}
-        email={email}
-        password={password}
-        setName={setName}
-        setEmail={setEmail}
-        setPassword={setPassword}
-        registerUser={registerUser}
-        />
-        <Login
-        email={email}
-        password={password}
-        setEmail={setEmail}
-        setPassword={setPassword} 
-        loginUser={loginUser}
-        />
+    <div className='app'>
+      <Switch>
+        <Route path='/'>
+          {
+            () => <Login
+                    email={email}
+                    password={password}
+                    setEmail={setEmail}
+                    setPassword={setPassword} 
+                    loginUser={loginUser}
+                  />
+          }
+        </Route>
+        <Route path='/register'>
+          {
+            () => <Register
+                    name={name}
+                    email={email}
+                    password={password}
+                    setName={setName}
+                    setEmail={setEmail}
+                    setPassword={setPassword}
+                    registerUser={registerUser}
+                  />
+          }
+        </Route>   
+      </Switch>
     </div>
   )
 }

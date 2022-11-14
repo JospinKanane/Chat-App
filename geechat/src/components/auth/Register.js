@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'wouter';
 
 function Register({name, email, password, setName, setPassword, setEmail, registerUser}) {
 
@@ -79,6 +80,12 @@ function Register({name, email, password, setName, setPassword, setEmail, regist
            {/* onClick={registration} */}
            </button>
         </form>
+        <div>
+          <span>Yet in ?</span>
+          <Link href='/'>
+            <a className='link'>Login</a>
+          </Link>
+        </div>
     </div>
   )
 }
