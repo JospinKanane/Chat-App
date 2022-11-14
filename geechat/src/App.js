@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
 import Auth from './components/Auth';
+import './App.css'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Auth />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div>
+      <Auth/>
+    </div>
+  )
 }
 
-export default App;
+export default App

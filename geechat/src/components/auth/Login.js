@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'wouter';
 
 function Auth({email, password, setEmail, setPassword, loginUser}) {
 
@@ -49,6 +50,12 @@ function Auth({email, password, setEmail, setPassword, loginUser}) {
            Start Chatting
            </button>
         </form>
+        <div>
+          <span>Not  yet in ?</span>
+          <Link href='/register'>
+            <a className='link'>Register</a>
+          </Link>
+        </div>
     </div>
   )
 }
