@@ -24,52 +24,58 @@ function Register({name, email, password, setName, setPassword, setEmail, regist
         className='signForm' 
         onSubmit={registerUser}
         >
-           <label 
-           className='name' 
-           for='signName'>
-           Name
-           </label>
-           <input 
-           type='text' 
-           id='signName' 
-           className="inputName" 
-           name='name'
-           placeholder='Enter a your name or your username here'
-           onChange={handleNameChange}
-           />
+           <div className='input-label'>
+              <label 
+              className='name' 
+              for='signName'>
+              Name
+              </label>
+              <input 
+              type='text' 
+              id='signName' 
+              className="inputName" 
+              name='name'
+              placeholder='Enter a your name or your username here'
+              onChange={handleNameChange}
+              />
+            </div>
            {/* <span 
            className='errName' 
            style={{color: "red"}}>
            </span> */}
-           <label 
-           className='email' 
-           for='signEmail'>
-           Email
-           </label>
-           <input type='text' 
-           id='signEmail' 
-           className="inputName" 
-           name='email'
-           placeholder='Enter a your email here'
-           onChange={handleMailChange}
-           />
+            <div className='input-label'>
+              <label 
+              className='email' 
+              for='signEmail'>
+              Email
+              </label>
+              <input type='text' 
+              id='signEmail' 
+              className="inputName" 
+              name='email'
+              placeholder='Enter a your email here'
+              onChange={handleMailChange}
+              />
+           </div>
            {/* <span 
            className='errMail' 
            style={{color: "red"}}>
            </span> */}
-           <label 
-           className='password' 
-           for='signPassword'>
-           Password
-           </label>
-           <input 
-           type='password' 
-           id='signPassword' 
-           className="inputPassword" 
-           name='password' 
-           placeholder='Enter your password here'
-           onChange={handlePWChange}
-           />
+           <div className='input-label'>
+              <label 
+              className='password' 
+              for='signPassword'>
+              Password
+              </label>
+              <input 
+              type='password' 
+              id='signPassword' 
+              className="inputPassword" 
+              name='password' 
+              placeholder='Enter your password here'
+              onChange={handlePWChange}
+              />
+           </div>
            {/* <span 
            className='errPassword' 
            style={{color: "red"}}>
@@ -80,8 +86,8 @@ function Register({name, email, password, setName, setPassword, setEmail, regist
            {/* onClick={registration} */}
            </button>
         </form>
-        <div>
-          <span>Yet in ?</span>
+        <div className='alter-auth'>
+          <span className='prev-link'>Yet in ?</span>
           <Link href='/'>
             <a className='link'>Login</a>
           </Link>

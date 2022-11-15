@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const User = require('../modeles/user');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 router.post('/', async(req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10) 
@@ -11,11 +11,11 @@ router.post('/', async(req, res) => {
         })
         user.save()
         .then((data) => {
-            res.json({'status': 'success'})
+            res.status(201).json({ message: 'Utilisateur enregister avec succes !'})
         })
         .catch((error)=>{
             console.log(error);
-            res.json({'status': 'error', 'message': "Ereur d'authentification"})
+            res.status(400).json({'status': 'error', 'message': "Erreur d'authentification"})
         })
 })
 
