@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Login from './auth/Login';
 import Register from './auth/Register';
-import { Route, Switch} from 'wouter'
+import { Route, Switch} from 'wouter';
 
 function Auth() {
   const [name, setName] = useState('')
@@ -35,7 +35,7 @@ function Auth() {
   }
 
   return (
-    <div className='app'>
+    <div className="auth-container">
       <Switch>
         <Route path='/'>
           {
