@@ -3,8 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const port = 9876;
-const loginRouter = require('./Routes/loginRouter');
-const registeRouter = require('./Routes/registeRouter');
+const Routes = require('./Routes/Router')
 const cors = require('cors');
 
 
@@ -28,8 +27,7 @@ app.get('/', (req, res) => {
     res.send('Hi guys !')
 });
 
-app.use('/register', registeRouter )
-app.use('/login', loginRouter )
+app.use(Routes)
 
 app.listen(port, () =>{
     console.log(`listening on port ${port}`);

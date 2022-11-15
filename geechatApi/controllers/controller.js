@@ -1,9 +1,10 @@
-const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const User = require('../modeles/user');
 const jwt = require('jsonwebtoken');
 
-router.post('/', (req, res) => {
+
+
+const login = (req, res) => {
     User.findOne({ userMail : req.body.email})
         .then(user => {
             if (!user) {
@@ -27,6 +28,27 @@ router.post('/', (req, res) => {
 
     })
     .catch(error => res.status(500).json({ error, message : "erreur serveur"}));
-})
+}
 
-module.exports = router;
+const register = async(req, res) => {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10) 
+    const user = new User({
+        userName : req.body.name,
+        userMail : req.body.email,
+        userPassword : hashedPassword,
+    })
+    user.save()
+    .then((data) => {
+        res.status(201).json({ message: 'Utilisateur enregister avec succes !'})
+    })
+    .catch((error)=>{
+        console.log(error);
+        res.status(400).json({'status': 'error', 'message': "Erreur d'authentification"})
+    })
+}
+
+module.exports = {
+    login,
+    register,
+}
+
