@@ -1,21 +1,19 @@
-import React from 'react';
+import React, { useContext} from 'react'; 
+import {UserContext} from '../../../src/App';
 import { Link } from 'wouter';
 // import Button from '@mui/material/Button'
 
-function Auth({email, password, setEmail, setPassword, loginUser}) {
+function Auth() {
 
-  const handleMailChange = (e) => {
-    setEmail(email =  e.target.value)
-
-  };
-
-  const handlePWChange = (e) => {
-    setPassword(password =  e.target.value)
-  };
+  const {loginUser} = useContext(UserContext);
+  const {handleMailChange} = useContext(UserContext);
+  const {handlePWChange} = useContext(UserContext);
+  // const {appName} = useContext(UserContext);
+  const {logo} = useContext(UserContext);
 
   return (
     <div className='loginPage'>
-        <h1 className="text-3xl text-gray-700 font-bold mb-5">Login to chatApp</h1>
+        <img src={logo} alt='logo'/>
         <form 
         className='loginForm' 
         onSubmit={loginUser}

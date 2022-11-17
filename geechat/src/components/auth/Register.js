@@ -1,25 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../../src/App';
 import { Link } from 'wouter';
 
-function Register({name, email, password, setName, setPassword, setEmail, registerUser}) {
+function Register() {
 
-  // const errName = document.querySelector('.errName')
-
-  const handleNameChange = (e) => {
-    setName(name = e.target.value); 
-  };
-  const handleMailChange = (e) => {
-    setEmail(email =  e.target.value)
-
-  };
-  const handlePWChange = (e) => {
-    setPassword(password =  e.target.value);
-  };
-
+  const {registerUser} = useContext( UserContext);
+  const {handleNameChange} = useContext(UserContext);
+  const {handleMailChange} = useContext(UserContext);
+  const {handlePWChange} = useContext(UserContext);
+  const {appName} = useContext(UserContext);
 
   return (
     <div className='signPage'>
-        <h1>SignUp to chatApp</h1>
+        <h1>{appName}</h1>
         <form 
         className='signForm' 
         onSubmit={registerUser}
@@ -39,10 +32,6 @@ function Register({name, email, password, setName, setPassword, setEmail, regist
               onChange={handleNameChange}
               />
             </div>
-           {/* <span 
-           className='errName' 
-           style={{color: "red"}}>
-           </span> */}
             <div className='input-label'>
               <label 
               className='email' 
@@ -57,10 +46,6 @@ function Register({name, email, password, setName, setPassword, setEmail, regist
               onChange={handleMailChange}
               />
            </div>
-           {/* <span 
-           className='errMail' 
-           style={{color: "red"}}>
-           </span> */}
            <div className='input-label'>
               <label 
               className='password' 
@@ -76,14 +61,9 @@ function Register({name, email, password, setName, setPassword, setEmail, regist
               onChange={handlePWChange}
               />
            </div>
-           {/* <span 
-           className='errPassword' 
-           style={{color: "red"}}>
-           </span> */}
            <button 
            className='signBTN'>
-           signUp
-           {/* onClick={registration} */}
+           Register
            </button>
         </form>
         <div className='alter-auth'>

@@ -1,6 +1,6 @@
 html, body {
     margin: 0;
-    background-color: rgba(0, 0, 0, 0.246) ;
+    background-color: #282e33 ;
 }
 
 .container {
@@ -9,32 +9,53 @@ html, body {
     margin-top: 7%;
 }
 .auth-container {
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
+    background-color: #282e33;
     color: rgba(0, 0, 0, 0.633);
     box-shadow: whitesmoke;
     border-radius: 5px;
+    padding-top: 30px;
 }
 
 /* Login qnd signup pages' css */
 .signPage, .loginPage{
     height: 60vh;
     width: 30vw;
+    color: rgba(255, 255, 255, 0.597);
+
+}
+img {
+    height: 15vh;
+    width: 10vw;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
 }
 .signForm, .loginForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    color: rgba(255, 255, 255, 0.597);
 }
 .input-label {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    color: rgba(255, 255, 255, 0.597);
+
 }
 input {
     width: 20vw;
-    height: 30px;
+    height: 35px;
     padding-left: 1em;
+    border-radius: 5px;
+    background-color: #282e33;
+    border: none;
+    border-bottom: 1px solid #2da192;
+    outline: none;
+    caret-color: white;
 }
 
 
@@ -42,12 +63,21 @@ h1, .alter-auth{
     text-align: center;
 }
  button {
-    width: 10vw;
-    height: 30px;
-    font-size: 1em;
+    width: 20vw;
+    height: 35px;
+    font-size: 1.5em;
     color: white;
-    background-color: #613bdb;
+    background-color: #2da192;
     border: 0;
     border-radius: 5px;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+ }
+ .alter-auth {
+    padding: 15px;
+    /* margin-top: 1.5rem; */
+ }
+ .link {
+    font-weight: bold;
+    color: #2da192;
+    margin-left: 5px;
  }
