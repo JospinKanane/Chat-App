@@ -6,10 +6,9 @@ html, body {
 .container {
     display: flex;
     justify-content: center;
-    margin-top: 7%;
+    margin-top: 5%;
 }
 .auth-container {
-    /* background-color: whitesmoke; */
     background-color: #282e33;
     color: rgba(0, 0, 0, 0.633);
     box-shadow: whitesmoke;
@@ -24,13 +23,11 @@ html, body {
     color: rgba(255, 255, 255, 0.597);
 
 }
-img {
+.logo {
     height: 15vh;
     width: 10vw;
-    text-align: center;
-    justify-content: center;
-    align-self: center;
-    align-items: center;
+    margin-left: 130px;
+    margin-bottom: 20px;
 }
 .signForm, .loginForm {
     display: flex;
@@ -65,7 +62,7 @@ h1, .alter-auth{
  button {
     width: 20vw;
     height: 35px;
-    font-size: 1.5em;
+    font-size: 1.1em;
     color: white;
     background-color: #2da192;
     border: 0;
@@ -74,10 +71,92 @@ h1, .alter-auth{
  }
  .alter-auth {
     padding: 15px;
-    /* margin-top: 1.5rem; */
  }
  .link {
     font-weight: bold;
     color: #2da192;
     margin-left: 5px;
  }
+
+ /* Chat style */
+
+ .chat {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+    width: 100vw;
+ }
+.search-users-area {
+    width: 40vw;
+    background-color: #282e33;
+}
+.users-area {
+    background-color: #3d444b;
+    height: 77vh;
+    margin: 15px;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+    width: 33vw;
+}
+.searchInput {
+    width: 35vw;
+    background-color: #3d444b;
+    border: none;
+    outline: none;
+    margin: 15px;
+    color: #fff;
+}
+.chatArea {
+    background-color: #18191d;
+    width: 60vw;
+}
+.chatParts {
+    position: absolute;
+    bottom: 0;
+}
+.messages-area{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+.forMsg {
+    display: flex;
+    flex-direction: row;
+    background-color: #282e33;
+    align-content: flex-end;
+    justify-content: flex-end;
+}
+.inputMsg {
+    background-color: #282e33;
+    width: 53.5vw;
+    margin: 10px;
+    color: #fff;
+}
+.sendIcon {
+    margin: 10px;
+    height: 35px;
+    width: 30px;
+    cursor: pointer;
+}
+.profile {
+    background-color: #282e33;
+    width: 58.5vw;
+    height: 55px;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.profileData {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.profileImage {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}

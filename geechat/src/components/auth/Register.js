@@ -8,11 +8,11 @@ function Register() {
   const {handleNameChange} = useContext(UserContext);
   const {handleMailChange} = useContext(UserContext);
   const {handlePWChange} = useContext(UserContext);
-  const {appName} = useContext(UserContext);
+  const {logo} = useContext(UserContext);
 
   return (
     <div className='signPage'>
-        <h1>{appName}</h1>
+        <img src={logo} alt='logo' className='logo'/>
         <form 
         className='signForm' 
         onSubmit={registerUser}

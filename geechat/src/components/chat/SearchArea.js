@@ -4,7 +4,7 @@ const SearchArea = () => {
   return (
     <div>
         <form>
-            <input></input>
+            <input className='searchInput' placeholder='Search'/>
         </form>
     </div>
   )

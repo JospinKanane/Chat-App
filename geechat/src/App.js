@@ -2,14 +2,17 @@ import React, { useState, createContext } from 'react';
 // import logo from '../assets/geechat-logo.png'
 import Auth from './components/Auth';
 import './App.css'
+import Chat from './components/chat/Chat';
 export const UserContext = createContext();
 
 function App() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const isConnected = true
   const logo = require('../assets/geechat-logo-cropped.png');
-  const appName = "GeeChat"
+  const sendIcon = require('../assets/sendIcon.svg');
+  const imageTest = require('../assets/image-test.jpg');
 
 
   // Register && login user
@@ -57,8 +60,9 @@ const handlePWChange = (e) => {
         name, 
         email, 
         password,
-        appName,
         logo,
+        sendIcon,
+        imageTest,
         setName,
         setEmail,
         setPassword,
@@ -68,9 +72,10 @@ const handlePWChange = (e) => {
         registerUser,
         loginUser
         }}>
-          <div className='container' >
-            {/* <img src={logo}/> */}
-            <Auth/>
+          <div className='' >
+            {
+              isConnected === true ? <Chat/> : <Auth/>
+            }
           </div>
     </UserContext.Provider>
   )

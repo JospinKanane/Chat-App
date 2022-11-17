@@ -1,8 +1,13 @@
 import React from 'react'
+import ChatArea from './ChatArea'
+import UsersArea from './UsersArea'
 
 const Chat = () => {
   return (
-    <div>chat</div>
+    <div className='chat'>
+      <UsersArea />
+      <ChatArea />
+    </div>
   )
 }
 

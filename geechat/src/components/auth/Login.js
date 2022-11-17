@@ -1,19 +1,17 @@
 import React, { useContext} from 'react'; 
 import {UserContext} from '../../../src/App';
 import { Link } from 'wouter';
-// import Button from '@mui/material/Button'
 
 function Auth() {
 
   const {loginUser} = useContext(UserContext);
   const {handleMailChange} = useContext(UserContext);
   const {handlePWChange} = useContext(UserContext);
-  // const {appName} = useContext(UserContext);
   const {logo} = useContext(UserContext);
 
   return (
     <div className='loginPage'>
-        <img src={logo} alt='logo'/>
+        <img src={logo} alt='logo' className='logo'/>
         <form 
         className='loginForm' 
         onSubmit={loginUser}

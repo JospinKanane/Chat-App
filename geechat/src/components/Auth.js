@@ -6,7 +6,7 @@ import { Route, Switch} from 'wouter';
 function Auth() {
 
   return (
-    <div className="auth-container">
+    <div className="auth-container container">
       <Switch>
         <Route path='/'>
           {
