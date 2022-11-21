@@ -1,5 +1,7 @@
 const bcrypt = require('bcryptjs');
 const User = require('../modeles/user');
+const Conversation = require('../modeles/Conversation');
+const Message = require('../modeles/Message');
 const jwt = require('jsonwebtoken');
 
 
@@ -43,12 +45,25 @@ const register = async(req, res) => {
     })
     .catch((error)=>{
         console.log(error);
-        res.status(400).json({'status': 'error', 'message': "Erreur d'authentification"})
+        res.status(400).json({error, 'message': "Erreur d'authentification"})
     })
+}
+
+const conversation = async(req, res) => {
+    const newConversation = new Conversation({
+        members : [req.body.senderId, req.body.receiverId],
+    })
+    try {
+        const savedConversation = await newConversation.save();
+        res.status(200).json({ savedConversation, message: 'Conversation started'})
+    } catch (error) {
+        res.status(500).json({error: error, message: 'Server or DB Error'})
+    }
 }
 
 module.exports = {
     login,
     register,
+    conversation,
 }
 
