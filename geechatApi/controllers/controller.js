@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const User = require('../modeles/user');
 const Conversation = require('../modeles/Conversation');
-// const Message = require('../modeles/Message');
+const Message = require('../modeles/Message');
 const jwt = require('jsonwebtoken');
 
 
@@ -58,7 +58,7 @@ const conversation = async(req, res) => {
         const savedConversation = await newConversation.save();
         res.status(200).json({ savedConversation, message: 'Conversation started'})
     } catch (error) {
-        res.status(500).json({error: error, message: 'Server or DB Error'})
+        res.status(500).json({error: error, message: ' conversation Server or DB Error'})
     }
 }
 
@@ -70,14 +70,37 @@ const getConversation = async(req, res) => {
         res.status(200).json({conversation});
         
     } catch (error) {
-        res.status(500).json({error: error, message: 'Server or DB Error'})
+        res.status(500).json({error: error, message: 'getConversation Server or DB Error'})
     }
 };
+
+const messages = async(req, res) => {
+    const newMessage = new Message(req.body)
+    try {
+        const savedMessage = await newMessage.save();
+        res.status(200).json(savedMessage)
+    } catch (error) {
+        res.status(500).json({error: error, message: 'Message Server or DB Error'})
+    }
+}
+
+const getMessages = async(req, res) => {
+    try {
+        const messages = await Message.find({
+            conversationId: req.params.conversationId,
+        })
+        res.status(200).json(messages);
+        
+    } catch (error) {
+        res.status(500).json({error: error, message: 'getMessages Server or DB Error'})
+    }
+}
 
 module.exports = {
     login,
     register,
     conversation,
     getConversation,
+    messages,
+    getMessages,
 }
-
