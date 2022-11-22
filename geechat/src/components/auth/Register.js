@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../../src/App';
-import { Link } from 'wouter';
+import { Link } from 'react-router-dom';
 
 function Register() {
 
@@ -68,7 +68,7 @@ function Register() {
         </form>
         <div className='alter-auth'>
           <span className='prev-link'>Yet in ?</span>
-          <Link href='/'>
+          <Link to={'/'}>
             <a className='link'>Login</a>
           </Link>
         </div>

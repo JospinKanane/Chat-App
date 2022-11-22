@@ -1,9 +1,12 @@
-import React, { useState, createContext } from 'react';
-// import logo from '../assets/geechat-logo.png'
+import React, { useState, createContext, } from 'react';
+// import {logo} from './assets/logo.png'
 // import Auth from './components/Auth';
 import './App.css'
 import Chat from './components/chat/Chat';
-import { Route, Switch} from 'wouter';
+// import { Route, Switch} from 'wouter';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 
 export const UserContext = createContext();
 
@@ -12,11 +15,11 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // const [isConnected, setIsConnected] = useState(false);
-  const [userId, setUserId] = useState('hhhh');
+  const [user, setUser] = useState('');
+  const [userId, setUserId] = useState('');
   const [token, setToken] = useState('');
-  const logo = require('../assets/geechat-logo-cropped.png');
-  const sendIcon = require('../assets/sendIcon.svg');
-  const imageTest = require('../assets/image-test.jpg');
+  const logo = require('./assets/logo.png');
+  const image = require('./assets/image-test.jpg');
 
 
   // Register && login user
@@ -34,7 +37,7 @@ const handlePWChange = (e) => {
 // Fetch fonctions
 const registerUser = async(e) => {
   e.preventDefault();
-  await fetch(`http://localhost:9876/register`,
+  await fetch(`http://localhost:8765/register`,
   {
     method : 'POST',
     headers : { 'Content-type': 'application/json' },
@@ -47,7 +50,7 @@ const registerUser = async(e) => {
 
   const loginUser = async(e) =>{
     e.preventDefault();
-    await fetch(`http://localhost:9876/login`,
+    await fetch(`http://localhost:8765/login`,
     {
       method : 'POST',
       headers : { 
@@ -56,12 +59,13 @@ const registerUser = async(e) => {
       body : JSON.stringify({email, password})
     })
     .then(data => data.json())
-    .then(res => console.log(setUserId(res.userId), setToken(res.token)))
+    .then(res => console.log(setUserId(res.userId), setToken(res.userToken), setUser(res)))
     .catch('erreur de fetch')
   }
 
-  console.log('UserId stocké dans le variable ' + userId)
-  console.log('Token stocké dans le variable ' + token)
+  // console.log('UserId stocké dans le variable ' + userId)
+  // console.log('Token stocké dans le variable ' + token)
+  console.log(user);
 
   return (
     <UserContext.Provider 
@@ -70,8 +74,8 @@ const registerUser = async(e) => {
         email, 
         password,
         logo,
-        sendIcon,
-        imageTest,
+        image,
+        user,
         setName,
         setEmail,
         setPassword,
@@ -81,14 +85,18 @@ const registerUser = async(e) => {
         registerUser,
         loginUser
         }}>
-          <div className='' >
-            <Switch>
-              <Route path='/chat'>
-                {
-                  () => <Chat />
-                }
-              </Route>   
-            </Switch>
+          <div  >
+            <Router>
+              {/* <div className="container">
+              <Routes>
+                <Route path='/' element={<Login/>}/>
+                <Route path='/register' element={<Register/>}/>
+              </Routes>
+              </div> */}
+              <Routes>
+                <Route path='/chat' element={<Chat/>}/>
+              </Routes>
+            </Router>
           </div>
     </UserContext.Provider>
   )

@@ -4,7 +4,6 @@ html, body {
 }
 
 .container {
-    margin-top: 50px;
     display: flex;
     justify-content: center;
 }
@@ -13,11 +12,11 @@ html, body {
     color: rgba(0, 0, 0, 0.633);
     box-shadow: whitesmoke;
     border-radius: 5px;
-    padding-top: 30px;
 }
 
 /* Login qnd signup pages' css */
 .signPage, .loginPage{
+    margin-top: 100px;
     height: 60vh;
     width: 30vw;
     color: rgba(255, 255, 255, 0.597);

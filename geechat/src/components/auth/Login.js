@@ -1,6 +1,6 @@
 import React, { useContext} from 'react'; 
 import {UserContext} from '../../../src/App';
-import { Link } from 'wouter';
+import { Link } from 'react-router-dom';
 
 function Auth() {
 
@@ -10,8 +10,8 @@ function Auth() {
   const {logo} = useContext(UserContext);
 
   return (
-    <div className='loginPage'>
-        <img src={logo} alt='logo' className='logo'/>
+    <div className='loginPage auth-container '>
+        <img  src={logo} alt='logo' className='logo'/>
         <form 
         className='loginForm' 
         onSubmit={loginUser}
@@ -53,7 +53,7 @@ function Auth() {
         </form>
         <div className='alter-auth'>
           <span className='prev-link'>Not  yet in ?</span>
-          <Link href='/register'>
+          <Link to={'/register'}>
             <a className='link'>Register</a>
           </Link>
         </div>

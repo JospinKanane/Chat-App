@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {UserContext} from '../../../src/App';
 import Message from './Message';
 import ProfileData from './ProfileData';
+import send from '../../assets/sendIcon.svg';
 
 const ChatArea = () => {
     const {sendIcon} = useContext(UserContext);
@@ -16,7 +17,7 @@ const ChatArea = () => {
         </div>
           <form className='forMsg'>
               <input type='text' className='inputMsg' placeholder='geechat message'/>
-              <img src={sendIcon} alt='send icon' className='sendIcon'/>
+              <img src={send} alt='send icon' className='sendIcon'/>
           </form>
         </div>
     </div>

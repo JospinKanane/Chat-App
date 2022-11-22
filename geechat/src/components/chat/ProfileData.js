@@ -2,11 +2,11 @@ import React, { useContext} from 'react'
 import {UserContext} from '../../../src/App';
 
 const ProfileData = () => {
-    const {imageTest} = useContext(UserContext);
+    const {image} = useContext(UserContext);
   return (
     <div className='profile'>
         <div className='profileData'>
-            <img src={imageTest} alt='profile' className='profileImage'></img>
+            <img src={image} alt='profile' className='profileImage'></img>
             <span className='profileName'>Jospin Kanane</span>
         </div>
     </div>
