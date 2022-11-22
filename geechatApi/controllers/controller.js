@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const User = require('../modeles/user');
 const Conversation = require('../modeles/Conversation');
-const Message = require('../modeles/Message');
+// const Message = require('../modeles/Message');
 const jwt = require('jsonwebtoken');
 
 
@@ -30,7 +30,7 @@ const login = (req, res) => {
             .catch(error => res.status(500).json({ error, message: "erreur de connexion"}));
 
     })
-    .catch(error => res.status(500).json({ error, message : "erreur serveur"}));
+    .catch(error => res.status(500).json({ "error" : error, message : "erreur serveur"}));
 }
 
 const register = async(req, res) => {
@@ -62,9 +62,22 @@ const conversation = async(req, res) => {
     }
 }
 
+const getConversation = async(req, res) => {
+    try {
+        const conversation = await Conversation.find({
+            members : {$in : [req.params.userId]}
+        })
+        res.status(200).json({conversation});
+        
+    } catch (error) {
+        res.status(500).json({error: error, message: 'Server or DB Error'})
+    }
+};
+
 module.exports = {
     login,
     register,
     conversation,
+    getConversation,
 }
 
