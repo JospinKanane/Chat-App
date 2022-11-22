@@ -1,15 +1,19 @@
 import React, { useState, createContext } from 'react';
 // import logo from '../assets/geechat-logo.png'
-import Auth from './components/Auth';
+// import Auth from './components/Auth';
 import './App.css'
 import Chat from './components/chat/Chat';
+import { Route, Switch} from 'wouter';
+
 export const UserContext = createContext();
 
 function App() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const isConnected = true
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  // const [isConnected, setIsConnected] = useState(false);
+  const [userId, setUserId] = useState('hhhh');
+  const [token, setToken] = useState('');
   const logo = require('../assets/geechat-logo-cropped.png');
   const sendIcon = require('../assets/sendIcon.svg');
   const imageTest = require('../assets/image-test.jpg');
@@ -17,42 +21,47 @@ function App() {
 
   // Register && login user
 const handleNameChange = (e) => {
-  setName({name : e.target.value}); 
+  setName(e.target.value); 
 };
 const handleMailChange = (e) => {
-  setEmail({email :  e.target.value})
+  setEmail(e.target.value)
 
 };
 const handlePWChange = (e) => {
-  setPassword({password :  e.target.value})
+  setPassword(e.target.value)
 };
 
 // Fetch fonctions
-  async function registerUser(e){
+const registerUser = async(e) => {
+  e.preventDefault();
+  await fetch(`http://localhost:9876/register`,
+  {
+    method : 'POST',
+    headers : { 'Content-type': 'application/json' },
+    body : JSON.stringify({name, email, password})
+  })
+  .then(data => data.json())
+  .then(res => console.log(res))
+  .catch("erreur d'enregistrement")
+}
+
+  const loginUser = async(e) =>{
     e.preventDefault();
-    const response = await fetch(`http://localhost:9876/register`,
+    await fetch(`http://localhost:9876/login`,
     {
       method : 'POST',
-      headers : { 'Content-type': 'application/json' },
-      body : JSON.stringify({name, email, password})
-    })
-
-    const data = await response.json();
-    console.log(data)
-  }
-
-  async function loginUser(e){
-    e.preventDefault();
-    const response = await fetch(`http://localhost:9876/login`,
-    {
-      method : 'POST',
-      headers : { 'Content-type': 'application/json', 'Authorization': 'Bearer ' },
+      headers : { 
+        'Content-type': 'application/json',
+      },
       body : JSON.stringify({email, password})
     })
-
-    const data = await response.json();
-    console.log(data)
+    .then(data => data.json())
+    .then(res => console.log(setUserId(res.userId), setToken(res.token)))
+    .catch('erreur de fetch')
   }
+
+  console.log('UserId stocké dans le variable ' + userId)
+  console.log('Token stocké dans le variable ' + token)
 
   return (
     <UserContext.Provider 
@@ -73,9 +82,13 @@ const handlePWChange = (e) => {
         loginUser
         }}>
           <div className='' >
-            {
-              isConnected === true ? <Chat/> : <Auth/>
-            }
+            <Switch>
+              <Route path='/chat'>
+                {
+                  () => <Chat />
+                }
+              </Route>   
+            </Switch>
           </div>
     </UserContext.Provider>
   )

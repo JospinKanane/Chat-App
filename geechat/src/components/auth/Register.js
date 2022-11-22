@@ -4,7 +4,7 @@ import { Link } from 'wouter';
 
 function Register() {
 
-  const {registerUser} = useContext( UserContext);
+  const {registerUser} = useContext(UserContext);
   const {handleNameChange} = useContext(UserContext);
   const {handleMailChange} = useContext(UserContext);
   const {handlePWChange} = useContext(UserContext);

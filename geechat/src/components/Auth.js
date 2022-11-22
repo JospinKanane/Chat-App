@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from './auth/Login';
 import Register from './auth/Register';
-import { Route, Switch} from 'wouter';
+import { Route, Switch } from 'wouter';
 
 function Auth() {
 
