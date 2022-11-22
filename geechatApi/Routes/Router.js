@@ -5,5 +5,6 @@ const controller = require('../controllers/controller');
 router.post('/login', controller.login)
 router.post('/register', controller.register)
 router.post('/conversation', controller.conversation)
+router.get('/conversation/:userId', controller.getConversation)
 
 module.exports = router;
