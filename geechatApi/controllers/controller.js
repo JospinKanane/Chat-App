@@ -19,7 +19,8 @@ const login = (req, res) => {
                 }
                 res.status(200).json({
                     userId: user._id,
-                    token: jwt.sign(
+                    userName: user.userName,
+                    userToken: jwt.sign(
                         {userId : user._id},
                         'USER_GEECHAT_RANDOM_TOKEN_SECRET',
                         { expiresIn: '24h' }
