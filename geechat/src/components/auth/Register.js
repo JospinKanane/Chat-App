@@ -1,14 +1,26 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../../src/App';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Register() {
 
-  const {registerUser} = useContext(UserContext);
   const {handleNameChange} = useContext(UserContext);
   const {handleMailChange} = useContext(UserContext);
   const {handlePWChange} = useContext(UserContext);
   const {logo} = useContext(UserContext);
+  const {name} = useContext(UserContext);
+  const {email} = useContext(UserContext);
+  const {password} = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const registerUser = async(e) => {
+    e.preventDefault();
+    const user = {name, email, password}
+    const responce = await axios.post(`http://localhost:8765/register`,user)
+    console.log(responce.data);
+    navigate('/')
+  }
 
   return (
     <div className='signPage'>
