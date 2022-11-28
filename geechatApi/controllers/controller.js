@@ -3,6 +3,7 @@ const User = require('../modeles/user');
 const Conversation = require('../modeles/Conversation');
 const Message = require('../modeles/Message');
 const jwt = require('jsonwebtoken');
+// const user = require('../modeles/user');
 
 
 
@@ -65,7 +66,7 @@ const conversation = async(req, res) => {
 const getConversation = async(req, res) => {
     try {
         const conversation = await Conversation.find({
-            members : {$in : [req.params.userId]}
+            members : {$in : [req.params.userId, req.body.userName]}
         })
         res.status(200).json({conversation});
         
@@ -95,6 +96,15 @@ const getMessages = async(req, res) => {
         res.status(500).json({error: error, message: 'getMessages Server or DB Error'})
     }
 }
+const getUser = async(req, res) => {
+    try {
+        const user = await User.find() 
+        res.status(200).json(user)  
+    } catch (error) {
+        res.status(500).json({error, message: 'getUsers Server or DB Error'})
+
+    }
+}
 
 module.exports = {
     login,
@@ -103,4 +113,5 @@ module.exports = {
     getConversation,
     messages,
     getMessages,
+    getUser
 }
