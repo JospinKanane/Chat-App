@@ -3,12 +3,14 @@ import {UserContext} from '../../../src/App';
 
 const ProfileData = () => {
     const {image} = useContext(UserContext);
-    const userName = localStorage.getItem('userName');
+    const {profileName} = useContext(UserContext);
+
+    
   return (
     <div className='profile'>
         <div className='profileData'>
             <img src={image} alt='profile' className='profileImage'></img>
-            <span className='profileName'>{userName}</span>
+            <span className='profileName'>{profileName}</span>
         </div>
     </div>
   )

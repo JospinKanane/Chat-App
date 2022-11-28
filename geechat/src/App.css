@@ -225,7 +225,7 @@ input {
         align-items: center;    
     }
     .search-users-area {
-        display: none;
+        display: block;
         width: auto;
     }
      .profile {
@@ -240,7 +240,7 @@ input {
     .chatArea {
         background-color: #18191d;
         width: 395.5px;
-        display: block;
+        display: none;
     }
     .forMsg {
         display: flex;

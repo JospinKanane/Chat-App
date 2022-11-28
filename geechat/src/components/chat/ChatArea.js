@@ -14,8 +14,6 @@ const ChatArea = () => {
           <Message/>
           <Message send={true}/>
           <Message/>
-          <Message/>
-          <Message/>
         </div>
           <form className='forMsg'>
               <input type='text' className='inputMsg' placeholder='geechat message'/>

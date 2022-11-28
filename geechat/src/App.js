@@ -12,6 +12,8 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState({});
+  const [profileName, setProfileName] = useState('');
+  const [profileId, setProfileId] = useState('');
   const logo = require('./assets/logo.png');
   const image = require('./assets/avat.png');
 
@@ -37,10 +39,14 @@ const handlePWChange = (e) => {
         logo,
         image,
         user,
+        profileName,
+        profileId,
         setName,
         setEmail,
         setPassword,
         setUser,
+        setProfileName,
+        setProfileId,
         handleNameChange,
         handleMailChange,
         handlePWChange,
@@ -54,8 +60,6 @@ const handlePWChange = (e) => {
                 <Route path='/chat' element={<Chat/>}/>
               </Routes>
               </div>
-              {/* <Routes>
-              </Routes> */}
             </Router>
           </div>
     </UserContext.Provider>
