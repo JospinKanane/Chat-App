@@ -5,7 +5,7 @@ import ProfileData from './ProfileData';
 import send from '../../assets/sendIcon.svg';
 
 const ChatArea = () => {
-    const {sendIcon} = useContext(UserContext);
+    // const {sendIcon} = useContext(UserContext);
   return (
     <div className='chatArea'>
       <ProfileData />
@@ -13,6 +13,8 @@ const ChatArea = () => {
         <div className='messages-area'>
           <Message/>
           <Message send={true}/>
+          <Message/>
+          <Message/>
           <Message/>
         </div>
           <form className='forMsg'>

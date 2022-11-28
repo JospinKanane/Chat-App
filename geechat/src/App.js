@@ -11,10 +11,9 @@ function App() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [isConnected, setIsConnected] = useState(false);
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState({});
   const logo = require('./assets/logo.png');
-  const image = require('./assets/image-test.jpg');
+  const image = require('./assets/avat.png');
 
 
   // handles functions
@@ -55,6 +54,8 @@ const handlePWChange = (e) => {
                 <Route path='/chat' element={<Chat/>}/>
               </Routes>
               </div>
+              {/* <Routes>
+              </Routes> */}
             </Router>
           </div>
     </UserContext.Provider>

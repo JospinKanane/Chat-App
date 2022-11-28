@@ -1,30 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Conversation from './Conversation'
 import SearchArea from './SearchArea'
-// import { UserContext } from '../../App'
-// import axios from 'axios'
+import axios from 'axios'
 
 const UsersArea = () => {
-  // const [conversation, setConversation] = useState([]);
-  // const {user} = useContext(UserContext)
+  const [users, setUsers] = useState([]);
+  const userId = localStorage.getItem('userId')
 
-  // useEffect(()=>{
-  //   const getConversations = async() => {
-  //     try {
-  //       const result = await axios.get('http://localhost:8765/conversation/'+user_id);
-  //       setConversation(result.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   getConversations()
-  // },[user_id])
+  useEffect(()=>{
+    const getUsers = async() => {
+        const res = await (await axios.get('http://localhost:8765/user')).data;
+        setUsers(res)
+    }
+    getUsers()
+  },[])
+
+  const getConversations = async() => {
+    const conversation = await (await axios.get('http://localhost:8765/conversation/'+userId)).data;
+    console.log(conversation);
+  };
+
+  getConversations();
+
   return (
     <div className='search-users-area'>
         <SearchArea />
         <div className='users-area'>
           {
-              <Conversation/>
+            users.map((user) => <Conversation user={user}/>) 
           }
         </div>
     </div>
