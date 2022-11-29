@@ -66,7 +66,7 @@ const conversation = async(req, res) => {
 const getConversation = async(req, res) => {
     try {
         const conversation = await Conversation.find({
-            members : {$in : [req.params.userId, req.body.userName]}
+            members : {$in : [req.params.userId]}
         })
         res.status(200).json({conversation});
         
