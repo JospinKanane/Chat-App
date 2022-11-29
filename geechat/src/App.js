@@ -1,9 +1,10 @@
-import React, { useState, createContext, } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import './App.css'
 import Chat from './components/chat/Chat';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import axios from 'axios';
 
 export const UserContext = createContext();
 
@@ -14,8 +15,10 @@ function App() {
   const [user, setUser] = useState({});
   const [profileName, setProfileName] = useState('');
   const [profileId, setProfileId] = useState('');
+  const [currentUserConv, setCurrentUserConv] = useState({});
   const logo = require('./assets/logo.png');
   const image = require('./assets/avat.png');
+  const currentUserId = localStorage.getItem('userId'); 
 
 
   // handles functions
@@ -29,6 +32,15 @@ const handleMailChange = (e) => {
 const handlePWChange = (e) => {
   setPassword(e.target.value)
 };
+
+useEffect(()=> {
+  const getCurrentUserConversation = async() => {
+    const convers = await (await axios.get('http://localhost:8765/conversation/'+currentUserId)).data
+    setCurrentUserConv(convers)
+  }
+  getCurrentUserConversation();
+}, [])
+console.log('current Use Conversations are ', currentUserConv);
 
   return (
     <UserContext.Provider 

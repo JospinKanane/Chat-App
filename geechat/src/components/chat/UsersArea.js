@@ -5,7 +5,6 @@ import CurrentUserProfile from './CurrentUserProfile';
 
 const UsersArea = () => {
   const [users, setUsers] = useState([]);
-  // const userId = localStorage.getItem('userId')
 
   useEffect(()=>{
     const getUsers = async() => {
