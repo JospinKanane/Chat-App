@@ -17,7 +17,7 @@ function Register() {
   const registerUser = async(e) => {
     e.preventDefault();
     const user = {name, email, password}
-    const responce = await axios.post(`http://localhost:8765/register`,user)
+    const responce = await axios.post(REACT_APP_NOT_SECRET_API+'/register',user)
     console.log(responce.data);
     navigate('/')
   }

@@ -12,8 +12,8 @@ const Conversation = ({user}) => {
       console.log('userId is:', user._id, 'and userName is:', user.userName);
       setProfileName(user.userName);
       setProfileId(user._id)
-      const conversation = await (await axios.get('http://localhost:8765/conversation/'+profileId)).data;
-      console.log('conversation of this user is ', conversation);
+      const conversation = await (await axios.get(REACT_APP_NOT_SECRET_API+'/conversation/'+profileId)).data;
+      console.log('conversation of this clicked user is ', conversation);
     }
 
 
