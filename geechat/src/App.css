@@ -224,8 +224,15 @@ input {
         display: flex;
         align-items: center;    
     }
+    #chatid{
+        background-color: #282e33;
+        display: flex;
+        flex-direction: column-reverse;
+        height: auto;
+        width: auto;
+        gap: 600px;
+    }
     .search-users-area {
-        display: block;
         width: auto;
     }
      .profile {
@@ -240,7 +247,6 @@ input {
     .chatArea {
         background-color: #18191d;
         width: 395.5px;
-        display: none;
     }
     .forMsg {
         display: flex;
@@ -289,11 +295,19 @@ input {
     
 }
 
-@media all and (max-width: 700px) {
+/* @media all and (max-width: 700px) {
     .container {
         display: flex;
         align-items: center;    
     }
+    #chatid{
+        background-color: #282e33;
+        display: flex;
+        flex-direction: column-reverse;
+        height: auto;
+        width: auto;
+        gap: 600px;
+    }
     .search-users-area {
         display: none;
         width: auto;
@@ -310,7 +324,6 @@ input {
     .chatArea {
         background-color: #18191d;
         width: 395.5px;
-        display: block;
     }
     .forMsg {
         display: flex;
@@ -357,7 +370,7 @@ input {
     }
 
     
-}
+} */
 
 /* @media all and (max-width: 900px) {
     html, body {

@@ -4,7 +4,7 @@ import UsersArea from './UsersArea'
 
 const Chat = () => {
   return (
-    <div className='chat'>
+    <div className='chat' id='chatid'>
       <UsersArea />
       <ChatArea />
     </div>
