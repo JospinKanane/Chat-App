@@ -39,8 +39,8 @@ useEffect(()=> {
     setCurrentUserConv(convers)
   }
   getCurrentUserConversation();
+  console.log('current Use Conversations are ', currentUserConv);
 }, [])
-console.log('current Use Conversations are ', currentUserConv);
 
   return (
     <UserContext.Provider 
