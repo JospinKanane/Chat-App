@@ -35,7 +35,7 @@ const handlePWChange = (e) => {
 
 useEffect(()=> {
   const getCurrentUserConversation = async() => {
-    const convers = await (await axios.get('http://localhost:8765/conversation/'+currentUserId)).data
+    const convers = await (await axios.get(REACT_APP_NOT_SECRET_API+'/conversation/'+currentUserId)).data
     setCurrentUserConv(convers)
   }
   getCurrentUserConversation();
