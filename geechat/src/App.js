@@ -16,6 +16,7 @@ function App() {
   const [profileName, setProfileName] = useState('');
   const [profileId, setProfileId] = useState('');
   const [currentUserConv, setCurrentUserConv] = useState({});
+  const [messages, setMessages] = useState(null)
   const logo = require('./assets/logo.png');
   const image = require('./assets/avat.png');
   const currentUserId = localStorage.getItem('userId'); 
@@ -51,12 +52,14 @@ useEffect(()=> {
         logo,
         image,
         user,
+        messages,
         profileName,
         profileId,
         setName,
         setEmail,
         setPassword,
         setUser,
+        setMessages,
         setProfileName,
         setProfileId,
         handleNameChange,

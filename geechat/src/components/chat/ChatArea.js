@@ -5,16 +5,19 @@ import ProfileData from './ProfileData';
 import send from '../../assets/sendIcon.svg';
 
 const ChatArea = () => {
-    // const {sendIcon} = useContext(UserContext);
+    const {messages} = useContext(UserContext);
   return (
     <div className='chatArea'>
       <ProfileData />
       <div className='chatParts '>
-        <div className='messages-area'>
-          <Message/>
-          <Message send={true}/>
-          <Message/>
-        </div>
+        {
+          messages ? 
+            <div className='messages-area'>
+              <Message/>
+              <Message send={true}/>
+              <Message/>
+            </div> : <span className='ifNotMessage'>Select a user to start a new conversation</span>
+        }
           <form className='forMsg'>
               <input type='text' className='inputMsg' placeholder='geechat message'/>
               <img src={send} alt='send icon' className='sendIcon'/>
