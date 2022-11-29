@@ -219,7 +219,7 @@ input {
     background-color: #2e5340;
 }
 
-@media all and (max-width: 400px) {
+@media all and (max-width: 500px) {
     .container {
         display: flex;
         align-items: center;    
