@@ -96,13 +96,22 @@ const getMessages = async(req, res) => {
         res.status(500).json({error: error, message: 'getMessages Server or DB Error'})
     }
 }
-const getUser = async(req, res) => {
+const getUsers = async(req, res) => {
     try {
         const user = await User.find() 
         res.status(200).json(user)  
     } catch (error) {
         res.status(500).json({error, message: 'getUsers Server or DB Error'})
 
+    }
+}
+
+const getOneUser = async(req, res) => {
+    try {
+        const user = await User.find({_id : req.params.userId})
+        res.status(200).json({user, message: 'user found'})
+    } catch (error) {
+        res.status(500).json({error, message: 'getOneUser Server or DB Error'})
     }
 }
 
@@ -113,5 +122,6 @@ module.exports = {
     getConversation,
     messages,
     getMessages,
-    getUser
+    getUsers,
+    getOneUser
 }

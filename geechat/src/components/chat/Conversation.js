@@ -12,7 +12,7 @@ const Conversation = ({user}) => {
       console.log('userId is:', user._id, 'and userName is:', user.userName);
       setProfileName(user.userName);
       setProfileId(user._id)
-      const conversation = await (await axios.get(REACT_APP_NOT_SECRET_API+'/conversation/'+profileId)).data;
+      const conversation = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/conversation/'+profileId)).data;
       console.log('conversation of this clicked user is ', conversation);
     }
 

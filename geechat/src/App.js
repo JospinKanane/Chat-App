@@ -16,6 +16,7 @@ function App() {
   const [profileName, setProfileName] = useState('');
   const [profileId, setProfileId] = useState('');
   const [currentUserConv, setCurrentUserConv] = useState({});
+  const [messages, setMessages] = useState(null)
   const logo = require('./assets/logo.png');
   const image = require('./assets/avat.png');
   const currentUserId = localStorage.getItem('userId'); 
@@ -35,12 +36,12 @@ const handlePWChange = (e) => {
 
 useEffect(()=> {
   const getCurrentUserConversation = async() => {
-    const convers = await (await axios.get(REACT_APP_NOT_SECRET_API+'/conversation/'+currentUserId)).data
+    const convers = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/conversation/'+currentUserId)).data
     setCurrentUserConv(convers)
   }
   getCurrentUserConversation();
+  console.log('current Use Conversations are ', currentUserConv);
 }, [])
-console.log('current Use Conversations are ', currentUserConv);
 
   return (
     <UserContext.Provider 
@@ -51,12 +52,14 @@ console.log('current Use Conversations are ', currentUserConv);
         logo,
         image,
         user,
+        messages,
         profileName,
         profileId,
         setName,
         setEmail,
         setPassword,
         setUser,
+        setMessages,
         setProfileName,
         setProfileId,
         handleNameChange,

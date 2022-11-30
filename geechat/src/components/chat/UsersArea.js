@@ -4,11 +4,11 @@ import axios from 'axios'
 import CurrentUserProfile from './CurrentUserProfile';
 
 const UsersArea = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]); 
 
   useEffect(()=>{
     const getUsers = async() => {
-        const res = await (await axios.get(REACT_APP_NOT_SECRET_API+'/user')).data;
+        const res = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/user')).data;
         setUsers(res)
     }
     getUsers()

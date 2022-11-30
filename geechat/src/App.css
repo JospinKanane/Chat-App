@@ -218,8 +218,16 @@ input {
 .message.send .messageTxt {
     background-color: #2e5340;
 }
+.ifNotMessage{
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 70px;
+    text-align: center;
+    padding-left: 10px;
+    position: absolute;
+    bottom: 250px;
+}
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 400px) {
     .container {
         display: flex;
         align-items: center;    
@@ -230,7 +238,7 @@ input {
         flex-direction: column-reverse;
         height: auto;
         width: auto;
-        gap: 600px;
+        gap: 900px;
     }
     .search-users-area {
         width: auto;
@@ -295,7 +303,7 @@ input {
     
 }
 
-/* @media all and (max-width: 700px) {
+/* @media all and (max-width: 700px) and (min-width: 500px){
     .container {
         display: flex;
         align-items: center;    
