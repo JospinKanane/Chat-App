@@ -7,11 +7,19 @@ const Conversation = ({user}) => {
     const {setProfileName} = useContext(UserContext);
     const {setProfileId} = useContext(UserContext);
     const {profileId} = useContext(UserContext);
+    const {setMessages} = useContext(UserContext);
+    const {currentUserConv} = useContext(UserContext);
+    const currentUser = localStorage.getItem('userId')
+
+    // useEffect(()=>{
+    //   const friendId = currentUserConv.members.find((m) => m!== currentUser)
+    // })
 
     const getConversation = async() => {
       console.log('userId is:', user._id, 'and userName is:', user.userName);
       setProfileName(user.userName);
       setProfileId(user._id)
+      setMessages(user)
       const conversation = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/conversation/'+profileId)).data;
       console.log('conversation of this clicked user is ', conversation);
     }
