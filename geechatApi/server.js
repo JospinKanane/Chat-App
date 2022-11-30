@@ -8,6 +8,7 @@ const Routes = require('./Routes/Router')
 require("dotenv").config();
 
 app.use(cors());
+app.options('*', cors())
 mongoose.connect( process.env.MONGODB_URI, 
     {
         useNewUrlParser: true,
