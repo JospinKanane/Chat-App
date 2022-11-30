@@ -7,6 +7,7 @@ const cors = require('cors');
 
 require("dotenv").config();
 
+app.use(cors());
 mongoose.connect( process.env.MONGODB_URI, 
     {
         useNewUrlParser: true,
@@ -15,7 +16,6 @@ mongoose.connect( process.env.MONGODB_URI,
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-app.use(cors());
 app.use(express.json());
 
 app.use(express.urlencoded({extended : false}))
