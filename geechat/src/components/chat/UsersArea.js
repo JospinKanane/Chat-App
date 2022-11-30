@@ -8,7 +8,7 @@ const UsersArea = () => {
 
   useEffect(()=>{
     const getUsers = async() => {
-        const res = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/user')).data;
+        const res = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/users')).data;
         setUsers(res)
     }
     getUsers()
