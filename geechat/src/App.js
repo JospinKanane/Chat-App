@@ -40,8 +40,9 @@ useEffect(()=> {
     setCurrentUserConv(convers)
   }
   getCurrentUserConversation();
-  console.log('current Use Conversations are ', currentUserConv);
 }, [])
+  console.log('current Use Conversations are ', currentUserConv);
+  console.log('users messages are ', messages)
 
   return (
     <UserContext.Provider 
@@ -55,6 +56,7 @@ useEffect(()=> {
         messages,
         profileName,
         profileId,
+        currentUserConv,
         setName,
         setEmail,
         setPassword,
