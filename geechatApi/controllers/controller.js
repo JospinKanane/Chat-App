@@ -21,6 +21,7 @@ const login = (req, res) => {
                 res.status(200).json({
                     userId: user._id,
                     userName: user.userName,
+                    status : user.status,
                     userToken: jwt.sign(
                         {userId : user._id},
                         'USER_GEECHAT_RANDOM_TOKEN_SECRET',
@@ -76,7 +77,8 @@ const getConversation = async(req, res) => {
 };
 
 const messages = async(req, res) => {
-    const newMessage = new Message(req.body)
+    const userId = req.params.userId
+    const newMessage = new User.newMessage(req.body)
     try {
         const savedMessage = await newMessage.save();
         res.status(200).json(savedMessage)
@@ -87,10 +89,8 @@ const messages = async(req, res) => {
 
 const getMessages = async(req, res) => {
     try {
-        const messages = await Message.find({
-            conversationId: req.params.conversationId,
-        })
-        res.status(200).json(messages);
+        const messages = await User.find({_id : req.params.userId})
+        res.status(200).json(messages.newMessage);
         
     } catch (error) {
         res.status(500).json({error: error, message: 'getMessages Server or DB Error'})
