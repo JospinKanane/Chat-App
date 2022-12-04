@@ -32,12 +32,10 @@ app.use((req, res, next) => {
 
 app.use(cors(), Routes)
 
-// io.on('connection', (socket) => {
-//     console.log('new user connected');
-// })
+io.on('connection', (socket) => {
+    
+})
 
 app.listen(port, () =>{
     console.log(`listening on port ${port}`);
 });
-
-console.log(io);
