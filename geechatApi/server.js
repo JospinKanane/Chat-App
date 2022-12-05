@@ -4,7 +4,6 @@ const app = express();
 const mongoose = require('mongoose');
 const port = process.env.NODE_PORT || 8765;
 const Routes = require('./Routes/Router')
-const io = require('socket.io');
 
 require("dotenv").config();
 
@@ -31,10 +30,6 @@ app.use((req, res, next) => {
 })
 
 app.use(cors(), Routes)
-
-io.on('connection', (socket) => {
-    
-})
 
 app.listen(port, () =>{
     console.log(`listening on port ${port}`);
