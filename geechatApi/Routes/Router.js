@@ -4,10 +4,10 @@ const controller = require('../controllers/controller');
 
 router.post('/login', controller.login)
 router.post('/register', controller.register)
-router.post('/conversation', controller.conversation)
-router.get('/conversation/:userId', controller.getConversation)
-router.post('/messages', controller.messages)
-router.get('/messages/:conversationId', controller.getMessages)
+// router.post('/conversation', controller.conversation)
+// router.get('/conversation/:userId', controller.getConversation)
+router.post('/sendmsg', controller.addMessage)
+router.post('/getAllMessages', controller.getAllMessages)
 router.get('/users', controller.getUsers)
 router.get('/users/:userId', controller.getOneUser)
 

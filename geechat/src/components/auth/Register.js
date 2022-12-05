@@ -17,7 +17,7 @@ function Register() {
   const registerUser = async(e) => {
     e.preventDefault();
     const user = {name, email, password}
-    const responce = await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/register',user)
+    const responce = await axios.post('http://localhost:8765/register',user)
     console.log(responce.data);
     navigate('/')
   }
@@ -74,7 +74,7 @@ function Register() {
               />
            </div>
            <button 
-           className='signBTN'>
+           className='authBtn'>
            Register
            </button>
         </form>

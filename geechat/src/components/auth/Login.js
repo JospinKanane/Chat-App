@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault();
     try {
       const userINF = {email, password}
-      const response = await (await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/login', userINF)).data;
+      const response = await (await axios.post('http://localhost:8765/login', userINF)).data;
       setUser(response)
       console.log(response)
       if(response.userToken) {
@@ -78,7 +78,7 @@ function Login() {
                   />
               </div>
               <button 
-              variant="contained">
+              variant="contained" className='authBtn'>
               Start Chatting
               </button>
             </form>

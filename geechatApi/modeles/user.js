@@ -3,11 +3,13 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const User = new mongoose.Schema(
     {
-    userName : {type : 'string', required: true},
-    userMail : {type : 'string', required: true, unique: true},
-    userPassword : {type : 'string', required: true},
-    userProfilePicture : {type : 'string'}
-    },{ collection : 'user-data' }
+    userName : {type : 'string', required: [true, "Can't be empty"]},
+    userMail : {type : 'string', required: [true, "Can't be empty"], unique: true},
+    userPassword : {type : 'string', required: [true, "Can't be empty"]},
+    userProfilePicture : {type : 'string'},
+    newMessage : {type : Object, default : {}},
+    status : {type : String, default : 'online'}
+    },{ collection : 'users-data', minimize : false }
 )
 
 User.plugin(uniqueValidator);

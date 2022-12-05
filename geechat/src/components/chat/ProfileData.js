@@ -1,15 +1,14 @@
 import React, { useContext} from 'react'
 import {UserContext} from '../../../src/App';
+import {IoMdContact} from 'react-icons/io'
 
 const ProfileData = () => {
-    const {image} = useContext(UserContext);
     const {profileName} = useContext(UserContext);
-
     
   return (
     <div className='profile'>
         <div className='profileData'>
-            <img src={image} alt='profile' className='profileImage'></img>
+            <IoMdContact className='profileImage'/>
             <span className='profileName'>{profileName}</span>
         </div>
     </div>

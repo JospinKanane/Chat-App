@@ -8,10 +8,11 @@ const UsersArea = () => {
 
   useEffect(()=>{
     const getUsers = async() => {
-        const res = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/users')).data;
+        const res = await (await axios.get('http://localhost:8765/users')).data;
         setUsers(res)
     }
     getUsers()
+    console.log(users);
   },[])
 
   return (
@@ -19,7 +20,7 @@ const UsersArea = () => {
       <CurrentUserProfile/>
         <div className='users-area'>
           {
-            users.map((user) => <Conversation user={user}/>) 
+            users.map((user) => <Conversation user={user} key={user._id}/>) 
           }
         </div>
     </div>

@@ -15,11 +15,10 @@ function App() {
   const [user, setUser] = useState({});
   const [profileName, setProfileName] = useState('');
   const [profileId, setProfileId] = useState('');
-  const [currentUserConv, setCurrentUserConv] = useState({});
-  const [messages, setMessages] = useState(null)
+  const [messages, setMessages] = useState('');
   const logo = require('./assets/logo.png');
-  const image = require('./assets/avat.png');
-  const currentUserId = localStorage.getItem('userId'); 
+  const image = require('./assets/avat.png'); 
+  const currentUser = localStorage.getItem('userId');
 
 
   // handles functions
@@ -28,22 +27,24 @@ const handleNameChange = (e) => {
 };
 const handleMailChange = (e) => {
   setEmail(e.target.value)
-
 };
 const handlePWChange = (e) => {
   setPassword(e.target.value)
 };
 
-useEffect(()=> {
-  const getCurrentUserConversation = async() => {
-    const convers = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/conversation/'+currentUserId)).data
-    setCurrentUserConv(convers)
-  }
-  getCurrentUserConversation();
-}, [])
-  console.log('current Use Conversations are ', currentUserConv);
-  console.log('users messages are ', messages)
+const handleSendMsg = async() => {
+  await axios.post('http://localhost:8765/sendmsg', {
+    message : messages,
+    from : currentUser,
+    to : profileId,
+  })
 
+  console.log(messages);
+}
+
+console.log('Clicked username', profileName);
+console.log('Clicked userId',profileId);
+  
   return (
     <UserContext.Provider 
       value={{
@@ -56,7 +57,6 @@ useEffect(()=> {
         messages,
         profileName,
         profileId,
-        currentUserConv,
         setName,
         setEmail,
         setPassword,
@@ -67,6 +67,7 @@ useEffect(()=> {
         handleNameChange,
         handleMailChange,
         handlePWChange,
+        handleSendMsg
         }}>
           <div  >
             <Router>
