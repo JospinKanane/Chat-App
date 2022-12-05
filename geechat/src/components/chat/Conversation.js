@@ -1,33 +1,23 @@
 import axios from 'axios';
 import React, {useContext, useEffect, useState} from 'react'
 import {UserContext} from '../../../src/App';
+import {RxAvatar} from 'react-icons/rx'
 
 const Conversation = ({user}) => {
-    const {image} = useContext(UserContext);
-    const {setProfileName} = useContext(UserContext);
-    const {setProfileId} = useContext(UserContext);
-    const {profileId} = useContext(UserContext);
-    const {setMessages} = useContext(UserContext);
-    const {currentUserConv} = useContext(UserContext);
-    const currentUser = localStorage.getItem('userId')
+  const {setProfileName} = useContext(UserContext)
+  const {setProfileId} = useContext(UserContext)
 
-    // useEffect(()=>{
-    //   const friendId = currentUserConv.members.find((m) => m!== currentUser)
-    // })
-
-    const getConversation = async() => {
-      console.log('userId is:', user._id, 'and userName is:', user.userName);
-      setProfileName(user.userName);
-      setProfileId(user._id)
-      setMessages(user)
-      const conversation = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/conversation/'+profileId)).data;
-      console.log('conversation of this clicked user is ', conversation);
-    }
-
+  const getUserdata = async() => {
+    const userdata = await (await axios.get('http://localhost:8765/users/'+user._id)).data
+    console.log(userdata);
+    setProfileName(user.userName)
+    setProfileId(user._id)
+  }
 
   return (
-    <div className='conversation' onClick={getConversation}>
-        <img src={image} alt='profile' className='conversImage'/>
+    <div className='conversation' onClick={getUserdata}>
+        {/* <img src={image} alt='profile' className='conversImage'/> */}
+        <RxAvatar className='conversImage'/>
         <span className='conversName'>{user.userName}</span>
     </div>
   )

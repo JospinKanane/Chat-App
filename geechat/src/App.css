@@ -55,7 +55,7 @@ input {
     color: #fff;
 }
 
- button {
+.authBtn {
     width: 20vw;
     height: 35px;
     font-size: 1.1em;
@@ -138,11 +138,21 @@ input {
     margin: 10px;
     color: #fff;
 }
+.msgSendBTN {
+    height: auto;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: #282e33;
+    
+}
 .sendIcon {
-    margin: 10px;
     height: 35px;
     width: 30px;
+    margin: 5px;
     cursor: pointer;
+    color: #2da192;
 }
 .profile {
     background-color: #282e33;

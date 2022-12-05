@@ -1,17 +1,19 @@
 import React, {useContext} from 'react'
 import {UserContext} from '../../../src/App';
+import {format} from 'timeago.js'
 
-const Message = ({send}) => {
+const Message = ({send, sms}) => {
     const {image} = useContext(UserContext);
+    // const {messages} = useContext(UserContext);
   return (
     <div className={send ? 'message send' : 'message'}>
-      <div className='messageTop'>
-        <img className='messageImg' src={image} alt='message imageTest'/>
-        <p className='messageTxt'>
-        Client-server architecture typically features multiple users’ workstations, PCs, or other devices, connected to a central server via an Internet connection or other network.</p>
-      </div>
-      <div className='messageBotton'> 1 hour ago</div>
+        <div className='messageTop'>
+          <p className='messageTxt'>{sms.message.text}</p>
+        </div>
+        <div className='messageBotton'>{format(sms.updatedAt)}</div>
     </div>
+        
+        
   )
 }
 
