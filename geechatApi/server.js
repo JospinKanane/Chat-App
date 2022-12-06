@@ -38,7 +38,7 @@ app.listen(port, () =>{
 
  const io = socket(server, {
     cors : {
-        origin : 'https://geechat.vercel.app/chat',
+        origin : 'https://geechat.vercel.app',
         credentials : true,
     }
  })
