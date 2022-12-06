@@ -2,9 +2,9 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const port = process.env.NODE_PORT || 8765;
+const port = 8765;
 const Routes = require('./Routes/Router');
-const socket = require('socket.io')
+// const socket = require('socket.io')
 
 require("dotenv").config();
 
@@ -35,25 +35,3 @@ app.use(cors(), Routes)
 app.listen(port, () =>{
     console.log(`listening on port ${port}`);
 });
-
- const io = socket(server, {
-    cors : {
-        origin : 'https://geechat.vercel.app',
-        credentials : true,
-    }
- })
-
- global.onlineUsers = new Map();
- io.on("connection", (socket) => {
-    global.chatSocket = socket;
-    socket.on("add-user", (userId) => {
-        onlineUsers.set(userId, socket.id);
-    });
- })
-
- socket.on("send-msg", (data) => {
-    const sendUserSocket = onlineUsers.get(data.to);
-    if(sendUserSocket) {
-        socket.to(sendUserSocket).emit("msg-receive", data.message);
-    }
- });
