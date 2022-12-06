@@ -219,7 +219,7 @@ input {
 }
 .messageBotton {
     font-size: 12px;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 .message.send {
     align-items: flex-end;
@@ -235,6 +235,19 @@ input {
     padding-left: 10px;
     position: absolute;
     bottom: 250px;
+}
+.welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+h1 {
+    color: #2da192;
+    font-size: 50px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 200px;
 }
 
 @media all and (max-width: 400px) {

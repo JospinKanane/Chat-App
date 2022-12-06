@@ -4,13 +4,13 @@ import { CiPaperplane } from 'react-icons/ci'
 import Message from './Message';
 import ProfileData from './ProfileData';
 import axios from 'axios';
+import Welcome from './Welcome';
 
 const ChatArea = () => {
     const {messages} = useContext(UserContext);
     const {setMessages} = useContext(UserContext);
     const {handleSendMsg} = useContext(UserContext);
-    const {profileId} = useContext(UserContext);
-    const {profile} = useContext(UserContext);
+    const {currentChat} = useContext(UserContext);
     const [msg, setmsg] = useState([])
     const clearInput = useRef()
     const currentUser = localStorage.getItem('userId')
@@ -19,12 +19,12 @@ const ChatArea = () => {
       const getMessages = (async()=>{
         const res = await (await axios.post('http://localhost:8765/getAllMessages', {
           from:currentUser,
-          to:profileId
+          to:currentChat._id
         })).data
         setmsg(res.messages)
       })
       getMessages();
-    },[profile])
+    },[currentChat])
 
     console.log('Messages are ', msg);
 
@@ -43,25 +43,30 @@ const clear = () => {
 
   return (
     <div className='chatArea'>
-      <ProfileData />
-      <div className='chatParts '>
-        {
-          messages ? <span className='ifNotMessage'>Select a user to start a new conversation</span> :
-          <div className='messages-area'>
-              {
-                msg.map((sms)=>{
-                  return <Message sms={sms} send={true} key={sms._id}/>
-                })
-              }
-            </div>
-        }
-          <form className='forMsg' onSubmit={e=>sendMsg(e)} ref={clearInput}>
-              <input type='text' className='inputMsg' placeholder='geechat message' onChange={(e)=>setMessages(e.target.value)}/>
-              <button className='msgSendBTN'>
-                <CiPaperplane className='sendIcon'/>
-              </button>
-          </form>
-        </div>
+      {
+        currentChat === undefined ? <Welcome/> :
+      <>
+        <ProfileData />
+        <div className='chatParts '>
+          {
+            messages ? <span className='ifNotMessage'>Select a user to start a new conversation</span> :
+            <div className='messages-area'>
+                {
+                  msg.map((sms)=>{
+                    return <Message sms={sms} own={sms.sender == currentUser} key={sms._id}/>
+                  })
+                }
+              </div>
+          }
+            <form className='forMsg' onSubmit={e=>sendMsg(e)} ref={clearInput}>
+                <input type='text' className='inputMsg' placeholder='geechat message' onChange={(e)=>setMessages(e.target.value)}/>
+                <button className='msgSendBTN'>
+                  <CiPaperplane className='sendIcon'/>
+                </button>
+            </form>
+          </div>
+          </>
+          }
     </div>
   )
 }

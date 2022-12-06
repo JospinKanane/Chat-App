@@ -13,9 +13,11 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState({});
+  const [profile, setProfile] = useState('');
   const [profileName, setProfileName] = useState('');
   const [profileId, setProfileId] = useState('');
   const [messages, setMessages] = useState('');
+  const [currentChat, setCurrentChat] = useState(undefined);
   const logo = require('./assets/logo.png');
   const image = require('./assets/avat.png'); 
   const currentUser = localStorage.getItem('userId');
@@ -42,8 +44,11 @@ const handleSendMsg = async() => {
   console.log(messages);
 }
 
-console.log('Clicked username', profileName);
-console.log('Clicked userId',profileId);
+const handleChatChange = (chat) => {
+  setCurrentChat(chat);
+};
+
+console.log('Clicked currentChat', currentChat);
   
   return (
     <UserContext.Provider 
@@ -55,19 +60,24 @@ console.log('Clicked userId',profileId);
         image,
         user,
         messages,
+        profile,
         profileName,
         profileId,
+        currentChat,
         setName,
         setEmail,
         setPassword,
         setUser,
         setMessages,
+        setProfile,
         setProfileName,
+        setCurrentChat,
         setProfileId,
         handleNameChange,
         handleMailChange,
         handlePWChange,
-        handleSendMsg
+        handleSendMsg,
+        handleChatChange
         }}>
           <div  >
             <Router>
