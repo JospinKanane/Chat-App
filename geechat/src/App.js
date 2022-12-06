@@ -35,7 +35,7 @@ const handlePWChange = (e) => {
 };
 
 const handleSendMsg = async() => {
-  await axios.post(REACT_APP_NOT_SECRET_API+'/sendmsg', {
+  await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/sendmsg', {
     message : messages,
     from : currentUser,
     to : profileId,
