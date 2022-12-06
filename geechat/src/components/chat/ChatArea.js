@@ -11,17 +11,22 @@ const ChatArea = () => {
     const {setMessages} = useContext(UserContext);
     const {handleSendMsg} = useContext(UserContext);
     const {currentChat} = useContext(UserContext);
+    const {socket} = useContext(UserContext);
+    const scrollRef = useRef();
     const [msg, setmsg] = useState([])
+    const [arrivalMessage, setArrivalMessage] = useState(null);
     const clearInput = useRef()
     const currentUser = localStorage.getItem('userId')
 
     useEffect(()=>{
       const getMessages = (async()=>{
-        const res = await (await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/getAllMessages', {
-          from:currentUser,
-          to:currentChat._id
-        })).data
-        setmsg(res.messages)
+        if(currentChat){
+          const res = await (await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/getAllMessages', {
+            from:currentUser,
+            to:currentChat._id
+          })).data
+          setmsg(res.messages)
+        }
       })
       getMessages();
     },[currentChat])
@@ -41,6 +46,22 @@ const clear = () => {
       setMessages("")
     }
 
+    useEffect(()=>{
+      if(socket.current){
+        socket.current.on("msg-recieve", (msg)=>{
+          setArrivalMessage({fromSelf:false, message : messages})
+        })
+      }
+    },[])
+
+    useEffect(()=>{
+      arrivalMessage && setMessages((prev)=>[...prev, arrivalMessage])
+    },[arrivalMessage])
+
+    useEffect(()=>{
+      scrollRef.current?.scrollIntoView({behavior:"smooth"})
+    })
+
   return (
     <div className='chatArea'>
       {
@@ -53,7 +74,7 @@ const clear = () => {
             <div className='messages-area'>
                 {
                   msg.map((sms)=>{
-                    return <Message sms={sms} own={sms.sender == currentUser} key={sms._id}/>
+                    return <Message sms={sms} own={sms.sender == currentUser} key={sms._id} ref={scrollRef}/>
                   })
                 }
               </div>

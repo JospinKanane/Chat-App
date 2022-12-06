@@ -124,8 +124,15 @@ input {
     color: #fff;
     overflow: auto;
     overflow-y: auto;
-    scrollbar-width: 0px;
     height: 78.8vh;
+    &::-webkit-scrollbar{
+        width: 0.2rem;
+        &-thumb {
+            background-color: #ffffff39;
+            width: 0.1rem;
+            border-radius: 1rem;;
+        }
+    }
 }
 .forMsg {
     display: flex;

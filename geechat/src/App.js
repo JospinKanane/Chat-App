@@ -1,10 +1,11 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useRef } from 'react';
 import './App.css'
 import Chat from './components/chat/Chat';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
+import {io} from 'socket.io-client'
 
 export const UserContext = createContext();
 
@@ -17,12 +18,12 @@ function App() {
   const [profileName, setProfileName] = useState('');
   const [profileId, setProfileId] = useState('');
   const [messages, setMessages] = useState('');
+  const socket = useRef();
   const [currentChat, setCurrentChat] = useState(undefined);
   const logo = require('./assets/logo.png');
   const image = require('./assets/avat.png'); 
   const currentUser = localStorage.getItem('userId');
-
-
+  
   // handles functions
 const handleNameChange = (e) => {
   setName(e.target.value); 
@@ -34,14 +35,27 @@ const handlePWChange = (e) => {
   setPassword(e.target.value)
 };
 
+
+useEffect(()=>{
+  if(currentUser){
+    socket.current = io(process.env.REACT_APP_NOT_SECRET_API),
+    socket.current.emit('add-user', currentUser)
+  }
+},[currentUser])
 const handleSendMsg = async() => {
   await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/sendmsg', {
     message : messages,
     from : currentUser,
-    to : profileId,
+    to : currentChat._id,
   })
-
-  console.log(messages);
+ socket.current.emit('send-msg', {
+  to : currentChat._id,
+  from : currentUser,
+  message : messages,
+ })
+ const msgs = [...messages];
+ msgs.push({fromSelf:true, message:messages})
+ setMessages(msgs)
 }
 
 const handleChatChange = (chat) => {
@@ -73,6 +87,7 @@ console.log('Clicked currentChat', currentChat);
         setProfileName,
         setCurrentChat,
         setProfileId,
+        socket,
         handleNameChange,
         handleMailChange,
         handlePWChange,
