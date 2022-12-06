@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../../src/App';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 function Register() {
 
@@ -17,7 +19,7 @@ function Register() {
   const registerUser = async(e) => {
     e.preventDefault();
     const user = {name, email, password}
-    const responce = await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/register',user)
+    const responce = await axios.post(REACT_APP_NOT_SECRET_API+'/register',user)
     console.log(responce.data);
     navigate('/')
   }

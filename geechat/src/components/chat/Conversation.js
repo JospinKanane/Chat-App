@@ -9,7 +9,7 @@ const Conversation = ({user}) => {
   const {setCurrentChat} = useContext(UserContext)
 
   const getUserdata = async() => {
-    const userdata = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/users/'+user._id)).data
+    const userdata = await (await axios.get(REACT_APP_NOT_SECRET_API+'/users/'+user._id)).data
     console.log(userdata);
     setProfileId(user)
     setProfileName(user.userName)

@@ -5,6 +5,7 @@ import Message from './Message';
 import ProfileData from './ProfileData';
 import axios from 'axios';
 import Welcome from './Welcome';
+import {v4 as uuidv4} from 'uuid';
 
 const ChatArea = () => {
     const {messages} = useContext(UserContext);
@@ -21,7 +22,7 @@ const ChatArea = () => {
     useEffect(()=>{
       const getMessages = (async()=>{
         if(currentChat){
-          const res = await (await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/getAllMessages', {
+          const res = await (await axios.post(REACT_APP_NOT_SECRET_API+'/getAllMessages', {
             from:currentUser,
             to:currentChat._id
           })).data
@@ -69,16 +70,15 @@ const clear = () => {
       <>
         <ProfileData />
         <div className='chatParts '>
-          {
-            messages ? <span className='ifNotMessage'>Select a user to start a new conversation</span> :
             <div className='messages-area'>
                 {
                   msg.map((sms)=>{
-                    return <Message sms={sms} own={sms.sender == currentUser} key={sms._id} ref={scrollRef}/>
+                    return <div ref={scrollRef} key={uuidv4()}>
+                              <Message sms={sms} own={sms.sender == currentUser} key={sms._id}/>
+                           </div>
                   })
                 }
-              </div>
-          }
+                </div>
             <form className='forMsg' onSubmit={e=>sendMsg(e)} ref={clearInput}>
                 <input type='text' className='inputMsg' placeholder='geechat message' onChange={(e)=>setMessages(e.target.value)}/>
                 <button className='msgSendBTN'>
