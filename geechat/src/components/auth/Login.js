@@ -2,6 +2,8 @@ import React, { useContext, useEffect, createContext, useState } from 'react';
 import {UserContext} from '../../../src/App';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 function Login() {
   const {handleMailChange} = useContext(UserContext);
@@ -13,11 +15,15 @@ function Login() {
   const {setUser} = useContext(UserContext);
   const navigate = useNavigate();
 
+
+  const handleValidation =()=>{
+
+  }
   const loginUser = async(e) =>{
     e.preventDefault();
     try {
       const userINF = {email, password}
-      const response = await (await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/login', userINF)).data;
+      const response = await (await axios.post(REACT_APP_NOT_SECRET_API+'/login', userINF)).data;
       setUser(response)
       console.log(response)
       if(response.userToken) {
@@ -88,6 +94,7 @@ function Login() {
                 <a className='link'>Register</a>
               </Link>
             </div>
+            <ToastContainer/>
         </div>
 
   )

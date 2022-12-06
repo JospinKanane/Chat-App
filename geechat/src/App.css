@@ -125,15 +125,7 @@ input {
     overflow: auto;
     overflow-y: auto;
     height: 78.8vh;
-    &::-webkit-scrollbar{
-        width: 0.2rem;
-        &-thumb {
-            background-color: #ffffff39;
-            width: 0.1rem;
-            border-radius: 1rem;;
-        }
     }
-}
 .forMsg {
     display: flex;
     flex-direction: row;
@@ -168,6 +160,9 @@ input {
     color: #fff;
     padding: 10px;
     font-weight: bold;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
 .profileData {
@@ -256,6 +251,16 @@ h1 {
     padding: 20px;
     margin-top: 200px;
 }
+.exit {
+    height: 30px;
+    width: 30px;
+    color: white;
+    cursor: pointer;
+}
+.exit:hover {
+    color: red;
+   
+}
 
 @media all and (max-width: 400px) {
     .container {
@@ -268,7 +273,7 @@ h1 {
         flex-direction: column-reverse;
         height: auto;
         width: auto;
-        gap: 900px;
+        gap: 700px;
     }
     .search-users-area {
         width: auto;

@@ -18,11 +18,11 @@ function App() {
   const [profileName, setProfileName] = useState('');
   const [profileId, setProfileId] = useState('');
   const [messages, setMessages] = useState('');
-  const socket = useRef();
   const [currentChat, setCurrentChat] = useState(undefined);
   const logo = require('./assets/logo.png');
   const image = require('./assets/avat.png'); 
   const currentUser = localStorage.getItem('userId');
+  const socket = useRef();
   
   // handles functions
 const handleNameChange = (e) => {
@@ -38,12 +38,14 @@ const handlePWChange = (e) => {
 
 useEffect(()=>{
   if(currentUser){
-    socket.current = io(process.env.REACT_APP_NOT_SECRET_API, { transports : ['websocket'] }),
+    socket.current = io(REACT_APP_NOT_SECRET_API, { transports : ['websocket'] }),
     socket.current.emit('add-user', currentUser)
   }
 },[currentUser])
+
+
 const handleSendMsg = async() => {
-  await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/sendmsg', {
+  await axios.post(REACT_APP_NOT_SECRET_API+'/sendmsg', {
     message : messages,
     from : currentUser,
     to : currentChat._id,
@@ -78,6 +80,7 @@ console.log('Clicked currentChat', currentChat);
         profileName,
         profileId,
         currentChat,
+        socket,
         setName,
         setEmail,
         setPassword,
@@ -87,7 +90,6 @@ console.log('Clicked currentChat', currentChat);
         setProfileName,
         setCurrentChat,
         setProfileId,
-        socket,
         handleNameChange,
         handleMailChange,
         handlePWChange,
