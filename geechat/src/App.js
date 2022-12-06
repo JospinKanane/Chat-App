@@ -38,7 +38,7 @@ const handlePWChange = (e) => {
 
 useEffect(()=>{
   if(currentUser){
-    socket.current = io(process.env.REACT_APP_NOT_SECRET_API),
+    socket.current = io(process.env.REACT_APP_NOT_SECRET_API, { transports : ['websocket'] }),
     socket.current.emit('add-user', currentUser)
   }
 },[currentUser])
