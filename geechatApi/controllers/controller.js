@@ -114,7 +114,11 @@ const getAllMessages = async(req, res) => {
 }
 const getUsers = async(req, res) => {
     try {
-        const user = await User.find() 
+        const user = await User.find({_id: { $ne: req.params.id } }).select([
+            "userMail",
+            "userName",
+            "_id"
+        ]) 
         res.status(200).json(user)  
     } catch (error) {
         res.status(500).json({error, message: 'getUsers Server or DB Error'})

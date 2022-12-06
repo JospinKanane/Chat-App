@@ -3,13 +3,13 @@ import {UserContext} from '../../../src/App';
 import {IoMdContact} from 'react-icons/io'
 
 const ProfileData = () => {
-    const {profileName} = useContext(UserContext);
+    const {currentChat} = useContext(UserContext);
     
   return (
     <div className='profile'>
         <div className='profileData'>
             <IoMdContact className='profileImage'/>
-            <span className='profileName'>{profileName}</span>
+            <span className='profileName'>{currentChat.userName}</span>
         </div>
     </div>
   )
