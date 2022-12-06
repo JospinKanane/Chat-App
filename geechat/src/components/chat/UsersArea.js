@@ -15,7 +15,7 @@ const UsersArea = () => {
   useEffect(()=>{
     const getUsers = async() => {
       if(currentUser){
-        const res = await (await axios.get(REACT_APP_NOT_SECRET_API+'/getallusers/'+currentUser)).data;
+        const res = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/getallusers/'+currentUser)).data;
         setUsers(res)
       } else {
         navigate('/')
