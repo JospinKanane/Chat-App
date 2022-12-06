@@ -8,7 +8,7 @@ router.post('/register', controller.register)
 // router.get('/conversation/:userId', controller.getConversation)
 router.post('/sendmsg', controller.addMessage)
 router.post('/getAllMessages', controller.getAllMessages)
-router.get('/users', controller.getUsers)
+router.get('/getallusers/:userId', controller.getUsers)
 router.get('/users/:userId', controller.getOneUser)
 
 module.exports = router;
