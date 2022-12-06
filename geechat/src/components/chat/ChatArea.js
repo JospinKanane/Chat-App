@@ -17,7 +17,7 @@ const ChatArea = () => {
 
     useEffect(()=>{
       const getMessages = (async()=>{
-        const res = await (await axios.post(REACT_APP_NOT_SECRET_API+'/getAllMessages', {
+        const res = await (await axios.post(process.env.REACT_APP_NOT_SECRET_API+'/getAllMessages', {
           from:currentUser,
           to:currentChat._id
         })).data

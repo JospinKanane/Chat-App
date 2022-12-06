@@ -6,11 +6,10 @@ import {RxAvatar} from 'react-icons/rx'
 const Conversation = ({user}) => {
   const {setProfileName} = useContext(UserContext)
   const {setProfileId} = useContext(UserContext)
-  const {setprofile} = useContext(UserContext)
   const {setCurrentChat} = useContext(UserContext)
 
   const getUserdata = async() => {
-    const userdata = await (await axios.get(REACT_APP_NOT_SECRET_API+'/users/'+user._id)).data
+    const userdata = await (await axios.get(process.env.REACT_APP_NOT_SECRET_API+'/users/'+user._id)).data
     console.log(userdata);
     setProfileId(user)
     setProfileName(user.userName)
