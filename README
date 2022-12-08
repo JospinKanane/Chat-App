@@ -1,0 +1,24 @@
+Geechat Web Application
+
+Geechat est une application web de chat en temps reel entre les utilisateurs connectés à une meme base de donnée développée en reactjs du cote frontend, nodejs avec son framework express du cote backend et du cote base de données avec la technologie mongodb avec son ORM mongoose.
+
+Les technologies utilisées sont : 
+    1 . Pour le frontend
+
+          axios : Pour faire les requêtes http
+          react-icons : Pour les icônes
+          react-toastify : Pour envoyer les messages de notification lors du validation
+          socket.io-client : pour le reel time cote frontend
+          timeago.js : pour formater le temps des messages
+          uuid : pour générer des ids spécifiques à chaque élément mappé.
+          
+    2 . Pour le backend
+
+          bcrypt : Pour crypter les mots de passe
+          cors : Pour les permissions 
+          express : Pour la creation du serveur
+          jsonwebtoken : Pour la validation
+          mongoose : Pour les requetes
+          socket.io : Pour la communication en temps reel
+
+
