@@ -19,6 +19,6 @@ Les technologies utilisées sont :
           express : Pour la creation du serveur
           jsonwebtoken : Pour la validation
           mongoose : Pour les requetes
-          socket.io : Pour la communication en temps reel
+          socket.io : Pour la communication en temps reel 
 
 
