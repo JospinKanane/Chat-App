@@ -9,30 +9,27 @@ Voici quelques-uns de service que offre notre api :
 
   + `/register` : c'est par ce endpoint que l'utilisateur aura la possibilité de se créer un compte et de s'enregistrer.
   Comment l'utiliser ? Voici un exemple d'une requete faite grace à ce endpoint en javascript en utilisant axios qui est une dependance qui                 simplifie l'accès à une requete.
-        
-        
-        
-        ```
-        /**Créer une fonction registerUser avec un block tryCatch pour bien nous permettre de faire la gestion d'erreur**/
-        const registerUser = async(e) => {
-            e.preventDefault();
-            try{
-                const user = {name, email, password}
-                  const response = await axios.post(https://api-geechat.onrender.com+'/register',user)
-                  if(response.data.status === 201){
-                    console.log("L'utilisateur a été enregistré avec succès !");
-                  }
-            
-            } catch (err) {
-                console.log(err)
-            }
+  
+    ```js
+    const registerUser = async(e) => {
+      try{
+        const user = {name, email, password}
+        const response = await axios.post(https://api-geechat.onrender.com+'/register',user)
+        if(response.data.status === 201){
+          console.log("L'utilisateur a été enregistré avec succès !");
         }
-        ```
-        
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    ```
+
    + `/login` : c'est l'endpoint de l'authentification. il nous permet de verifier les information entrées par l'utilisateur si elles sont veridique.           Voici un exemple concret d'utilisation qui n'est pas bien loin de cleui de register toujours en javascript.
    
    
-        ```
+        ```js
+        
         const loginUser = async(e) =>{
             e.preventDefault();
             try {
@@ -48,20 +45,21 @@ Voici quelques-uns de service que offre notre api :
         }
         ```
     
-    + `/sendmsg` : c'est l'endpoint qui nous permet d'envoyer un message à un autre utilisateur. ci-dessous un cas pratique avec javascript egalement.
-    + `/getAllMessages` : Pour recuperer tous les messages de la base de donnée.
-    + `/getallusers` : Pour recuperer tous les utilisateurs enregistres sur la base de donnée.
-    + `/getUsers/:userId` : Pour repuerer un utilisateur specifique à partir de son **id**
-    
-    Voyons le cas de recuperation d'un utilisateur specifique à partir de son **id**.
-    
-    ```
-        const getUser = async() => {
-          if(id){
-            const res = await (await axios.get('https://api-geechat.onrender.com'+'/getusers/'+userId)).data;
-           console.log(res)
-        }
-    ```
+   - `/sendmsg` : c'est l'endpoint qui nous permet d'envoyer un message à un autre utilisateur. ci-dessous un cas pratique avec javascript egalement.
+   * `/getAllMessages` : Pour recuperer tous les messages de la base de donnée.
+   + `/getallusers` : Pour recuperer tous les utilisateurs enregistres sur la base de donnée.
+   - `/getUsers/:userId` : Pour repuerer un utilisateur specifique à partir de son **id**
+  
+   Voyons le cas de recuperation d'un utilisateur specifique à partir de son **id**
+   
+   
+      ```js
+      const getUser = async() => {
+       if(userId){
+         const res = await (await axios.get('https://api-geechat.onrender.com'+'/getusers/'+userId)).data;
+         console.log(res)
+      }
+      ```
         
         
 
