@@ -1,4 +1,4 @@
-Geechat Web Application
+# Geechat Web Application
 
 Geechat est une application web de chat en temps reel entre les utilisateurs connectés à une meme base de donnée développée en reactjs du cote frontend, nodejs avec son framework express du cote backend et du cote base de données avec la technologie mongodb avec son ORM mongoose.
 
