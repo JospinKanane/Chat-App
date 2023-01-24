@@ -25,6 +25,7 @@ describe('Testing server API', ()=>{
     it('should return status 200 on user router /getAllMessages', ()=>{
         chai.request(server)
             .post('/getAllMessages')
+            .send()
             .end((err, res)=> {
                 res.should.have.status(200);
             })
@@ -33,6 +34,7 @@ describe('Testing server API', ()=>{
     it('should return status 200 on user router /getallusers', ()=>{
         chai.request(server)
             .get('/getallusers/:userId')
+            .send({_id: { $ne: "6388b73577b362c510a2b4a3" } })
             .end((err, res)=> {
                 res.should.have.status(200);
             })
@@ -41,11 +43,22 @@ describe('Testing server API', ()=>{
     it('should return status 200 on user router /sendmsg', ()=>{
         chai.request(server)
             .post('/sendmsg')
+            .send({
+                message : "salut ça va ?",
+                users : ["6388b70777b362c510a2b49b", "6388b73577b362c510a2b4a3"],
+                sender : "6388b70777b362c510a2b49b",
+            })
             .end((err, res)=> {
-                if(res)
                     res.should.have.status(200);
-                if(err)
-                    err.should.have.status(500)
+            })
+    })
+
+    it('should return status 200 on user router /users/:userId', ()=>{
+        chai.request(server)
+            .get('/users/:userId')
+            .send({_id: { $ne: "6388b73577b362c510a2b4a3" } })
+            .end((err, res)=> {
+                    res.should.have.status(200);
             })
     })
 })
